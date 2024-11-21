@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etBarberName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên thợ"
+        android:inputType="text"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/etExperience"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Kinh nghiệm (năm)"
+        android:inputType="number"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/etRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Đánh giá (0 - 5)"
+        android:inputType="numberDecimal"
+        android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/btnSaveBarber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lưu Thợ" />
+</LinearLayout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/etLocationName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tên cửa hàng"
+                android:inputType="text"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/etLocationAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Địa chỉ"
+                android:inputType="textPostalAddress"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/etLocationService"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Dịch vụ cung cấp"
+                android:inputType="text"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/etLocationPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Giá trung bình"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/etLocationContact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Số điện thoại liên hệ"
+                android:inputType="phone"
+                android:minHeight="48dp" />
+
+            <Button
+                android:id="@+id/btnSelectImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chọn Hình Ảnh" />
+
+            <ImageView
+                android:id="@+id/ivLocationImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:layout_marginVertical="8dp"
+                android:background="#E0E0E0" />
+
+            <Button
+                android:id="@+id/btnSaveLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lưu Địa Điểm"
+                android:layout_marginTop="16dp" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

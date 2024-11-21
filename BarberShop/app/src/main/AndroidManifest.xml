@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/iconapp"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/iconapp"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BarberShop"
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".BookingActivity" />
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".ManageUsersActivity" />
+        <activity android:name=".EditUserActivity"/>
+        <activity android:name=".ManageStoresActivity" />
+        <activity android:name=".AddEditLocationActivity" />
+        <activity android:name=".ManageBarbersActivity" />
+        <activity android:name=".AddBarberActivity" />
+        <activity android:name=".RatingActivity" />
+
+
+    </application>
+
+</manifest>

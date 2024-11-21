@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/tvBarberName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tên thợ"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvExperience"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kinh nghiệm: 5 năm" />
+
+    <TextView
+        android:id="@+id/tvRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đánh giá: 4.5 sao" />
+
+    <Button
+        android:id="@+id/btnDeleteBarber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xóa" />
+</LinearLayout>

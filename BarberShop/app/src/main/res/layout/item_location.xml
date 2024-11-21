@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="#FFFFFF"
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:id="@+id/tvLocationName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tên cửa hàng"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvLocationAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Địa chỉ"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tvLocationService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dịch vụ"
+        android:textSize="14sp" />
+</LinearLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="66dp"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="15dp"
+        android:paddingBottom="8dp"
+        android:text="Điểm xếp hạng và bài đánh giá"
+        android:textSize="25dp"/>
+
+
+    <RatingBar
+        android:id="@+id/Rating_Bar"
+        android:layout_width="wrap_content"
+        android:layout_height="61dp"
+        android:layout_gravity="center_horizontal"
+        android:numStars="5"
+        android:paddingBottom="16dp"
+        android:stepSize="1.0"
+        android:progressTint="#FFE53B"
+       />
+
+
+
+    <EditText
+        android:id="@+id/ReviewTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mô tả trải nghiệm của bạn (không bắt buộc)"
+        android:inputType="textMultiLine"
+        android:layout_marginBottom="25dp"
+        android:minHeight="48dp" />
+    <Button
+        android:id="@+id/btnSubmitRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#2196F3"
+        android:text="Gửi đánh giá"
+        tools:ignore="VisualLintButtonSize" />
+
+
+</LinearLayout>
