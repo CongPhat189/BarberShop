@@ -2,16 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:fontFamily="cursive"
+        android:textColor="@color/Blue"
+        android:textSize="40dp"
+        android:textAlignment="center"
+        android:text="Quản lý cửa hàng" />
 
     <Button
         android:id="@+id/btnAddLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/lightBlue"
+        android:layout_marginTop="20dp"
+
         android:text="Thêm Địa Điểm" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLocations"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginLeft="2dp" />
 </LinearLayout>

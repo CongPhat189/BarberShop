@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Thống kê người dùng -->
+    <TextView
+        android:id="@+id/text_total_users"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tổng số người dùng: "
+        android:textSize="16sp"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/text_users_with_bookings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Người dùng đã đặt lịch: "
+        android:textSize="16sp"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/text_most_active_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Người dùng hoạt động tích cực nhất: "
+        android:textSize="16sp"
+        android:padding="8dp" />
+
+    <!-- Thống kê lịch đã đặt -->
+    <TextView
+        android:id="@+id/text_total_bookings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tổng số lịch đã đặt: "
+        android:textSize="16sp"
+        android:padding="8dp" />
+
+    <!-- Thống kê doanh thu -->
+    <TextView
+        android:id="@+id/text_total_revenue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tổng doanh thu: "
+        android:textSize="16sp"
+        android:padding="8dp" />
+
+</LinearLayout>

@@ -16,6 +16,8 @@ public class ManageStoresActivity extends AppCompatActivity {
     private LocationAdapter adapter;
     private List<Location> locationList;
     private DatabaseHelper dbHelper;
+    private Button btnAddLocation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,16 +25,21 @@ public class ManageStoresActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manage_stores);
 
         rvLocations = findViewById(R.id.rvLocations);
-        Button btnAddLocation = findViewById(R.id.btnAddLocation);
+         btnAddLocation   = findViewById(R.id.btnAddLocation);
 
         dbHelper = new DatabaseHelper(this);
         locationList = dbHelper.getAllLocations();
-
         adapter = new LocationAdapter(locationList, new LocationAdapter.OnItemClickListener() {
+
+
             @Override
             public void onEdit(Location location) {
                 Intent intent = new Intent(ManageStoresActivity.this, AddEditLocationActivity.class);
                 intent.putExtra("locationId", location.getId());
+                intent.putExtra("name", location.getName());
+                intent.putExtra("address", location.getAddress());
+                intent.putExtra("contact", location.getContact());
+                intent.putExtra("image", location.getImageUri());
                 startActivity(intent);
             }
 
@@ -44,6 +51,7 @@ public class ManageStoresActivity extends AppCompatActivity {
             }
         });
 
+
         rvLocations.setLayoutManager(new LinearLayoutManager(this));
         rvLocations.setAdapter(adapter);
 
@@ -51,6 +59,8 @@ public class ManageStoresActivity extends AppCompatActivity {
             Intent intent = new Intent(ManageStoresActivity.this, AddEditLocationActivity.class);
             startActivity(intent);
         });
+
+        rvLocations.setAdapter(adapter);
     }
 
     @Override
@@ -60,5 +70,8 @@ public class ManageStoresActivity extends AppCompatActivity {
         locationList.addAll(dbHelper.getAllLocations());
         adapter.notifyDataSetChanged();
     }
+
+
+
 }
 

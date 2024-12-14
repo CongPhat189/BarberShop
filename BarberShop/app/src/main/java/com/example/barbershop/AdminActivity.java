@@ -52,23 +52,23 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
 
-//        btnManageAppointments.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Điều hướng đến màn hình quản lý lịch hẹn
-//                Intent intent = new Intent(AdminActivity.this, ManageAppointmentsActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        btnManageAppointments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Điều hướng đến màn hình quản lý lịch hẹn
+                Intent intent = new Intent(AdminActivity.this, ManageAppointmentsActivity.class);
+                startActivity(intent);
+            }
+        });
 
-//        btnViewReports.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Điều hướng đến màn hình xem báo cáo
-//                Intent intent = new Intent(AdminActivity.this, ReportsActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        btnViewReports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Điều hướng đến màn hình xem báo cáo
+                Intent intent = new Intent(AdminActivity.this, ReportsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
 

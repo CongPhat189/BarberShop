@@ -3,7 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
+        android:textColor="@color/Blue"
+        android:textSize="40dp"
+        android:textAlignment="center"
+        android:layout_marginBottom="10dp"
+        android:text="Quản lý người dùng" />
 
     <EditText
         android:id="@+id/etSearchUser"
@@ -19,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Thêm Người dùng mới"
+        android:backgroundTint="@color/lightBlue"
         android:layout_marginBottom="16dp" />
 
     <androidx.recyclerview.widget.RecyclerView

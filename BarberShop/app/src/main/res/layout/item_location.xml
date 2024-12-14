@@ -28,4 +28,43 @@
         android:layout_height="wrap_content"
         android:text="Dịch vụ"
         android:textSize="14sp" />
+    <TextView
+        android:id="@+id/tvLocationPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Giá trung bình"
+        android:textSize="14sp" />
+    <TextView
+        android:id="@+id/tvLocationContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Liên Hệ"
+        android:textSize="14sp" />
+    <ImageView
+        android:id="@+id/location_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btnEditStore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sửa"
+            android:backgroundTint="@color/lightBlue"/>
+
+
+        <Button
+            android:id="@+id/btnDeleteStore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xóa"
+            android:backgroundTint="@color/lightBlue"/>
+    </LinearLayout>
 </LinearLayout>

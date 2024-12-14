@@ -1,6 +1,12 @@
 package com.example.barbershop;
 
+import android.Manifest;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
@@ -10,6 +16,12 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.List;
 
 public class AddEditLocationActivity extends AppCompatActivity {
 
@@ -17,7 +29,10 @@ public class AddEditLocationActivity extends AppCompatActivity {
     private Button btnSelectImage, btnSaveLocation;
     private ImageView ivLocationImage;
     private String imageUri = "";
+    private Uri selectedImageUri;
     private int locationId = -1; // Default là thêm mới
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private boolean isEditMode = false;
 
     private DatabaseHelper dbHelper;
 
@@ -38,10 +53,17 @@ public class AddEditLocationActivity extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(this);
 
-        // Kiểm tra nếu là chỉnh sửa
+//        // Kiểm tra nếu là chỉnh sửa
+//        Intent intent = getIntent();
+//        if (intent.hasExtra("locationId")) {
+//            locationId = intent.getIntExtra("locationId", -1);
+//            loadLocationDetails(locationId);
+//        }
+        // Kiểm tra chế độ sửa
         Intent intent = getIntent();
-        if (intent.hasExtra("locationId")) {
-            locationId = intent.getIntExtra("locationId", -1);
+        if (intent.hasExtra("location_id")) {
+            isEditMode = true;
+            locationId = intent.getIntExtra("location_id", -1);
             loadLocationDetails(locationId);
         }
 
@@ -71,34 +93,58 @@ public class AddEditLocationActivity extends AppCompatActivity {
 
     // Chọn hình ảnh từ thiết bị
     private void selectImage() {
-        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, 100);
+
+
+        // Open image picker
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(Intent.createChooser(intent, "Chọn ảnh"), PICK_IMAGE_REQUEST);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
-            Uri selectedImage = data.getData();
-            imageUri = selectedImage.toString();
-            ivLocationImage.setImageURI(selectedImage);
+
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+        {
+            super.onActivityResult(requestCode, resultCode, data);
+
+            if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+                selectedImageUri = data.getData();
+                String imageUriString = selectedImageUri.toString();
+                ivLocationImage.setImageURI(selectedImageUri);
+
+
+
+
+
+                try {
+                    // Display the selected image
+                    InputStream inputStream = getContentResolver().openInputStream(selectedImageUri);
+                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                    ivLocationImage.setImageBitmap(bitmap);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "Không thể chọn ảnh", Toast.LENGTH_SHORT).show();
+                }
+            }
         }
-    }
+
 
     // Lưu thông tin địa điểm vào SQLite
     private void saveLocation() {
-        String name = etLocationName.getText().toString();
-        String address = etLocationAddress.getText().toString();
-        String service = etLocationService.getText().toString();
-        String priceStr = etLocationPrice.getText().toString();
-        String contact = etLocationContact.getText().toString();
+                String name = etLocationName.getText().toString().trim();
+                String address = etLocationAddress.getText().toString().trim();
+                String service = etLocationService.getText().toString().trim();
+                String price = etLocationPrice.getText().toString().trim();
+                String contact = etLocationContact.getText().toString().trim();
+                String imageUri = (selectedImageUri != null) ? selectedImageUri.toString() : null;
 
-        if (name.isEmpty() || address.isEmpty() || service.isEmpty() || priceStr.isEmpty() || contact.isEmpty()) {
+        if (name.isEmpty() || address.isEmpty() || service.isEmpty() || price.isEmpty() || contact.isEmpty()) {
             Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        double price = Double.parseDouble(priceStr);
+
 
         if (locationId == -1) {
             // Thêm mới
@@ -111,13 +157,14 @@ public class AddEditLocationActivity extends AppCompatActivity {
             }
         } else {
             // Cập nhật
-            boolean result = dbHelper.updateLocation(locationId, name, address, service, price, contact, imageUri);
-            if (result) {
-                Toast.makeText(this, "Cập nhật địa điểm thành công!", Toast.LENGTH_SHORT).show();
-                finish();
-            } else {
-                Toast.makeText(this, "Cập nhật địa điểm thất bại!", Toast.LENGTH_SHORT).show();
-            }
+            if (isEditMode) {
+                boolean result = dbHelper.updateLocation(locationId,name, address, service, price, contact, imageUri);
+
+                if (result) {
+                    Toast.makeText(this, "Cập nhật địa điểm thành công", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
+                }}
         }
     }
 }

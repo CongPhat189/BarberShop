@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">BarberShop</string>
+    <string name="app_name" translatable="false">BarberShop</string>
+    <string-array name="service_list">
+        <item>Cắt tóc - 100,000 VND</item>
+        <item>Gội đầu - 50,000 VND</item>
+        <item>Nhuộm tóc - 300,000 VND</item>
+        <item>Tạo kiểu - 200,000 VND</item>
+    </string-array>
 </resources>
+
+

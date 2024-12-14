@@ -5,12 +5,12 @@ public class Location {
     private String name;
     private String address;
     private String service;
-    private double price;
+    private String price;
     private String contact;
     private String imageUri;
 
     // Constructor
-    public Location(int id, String name, String address, String service, double price, String contact, String imageUri) {
+    public Location(int id, String name, String address, String service, String price, String contact, String imageUri) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -53,11 +53,11 @@ public class Location {
         this.service = service;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

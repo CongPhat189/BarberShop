@@ -1,79 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/barber20"
+    android:background="@color/white"
     android:orientation="vertical"
     android:padding="16dp">
 
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="74dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="cursive"
-            android:text="Shop Name"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="40dp" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="95dp"
-            android:text="Xin kính chào quý khách"
-            android:textColor="@color/white"
-            android:fontFamily="cursive"
-            android:textAlignment="center"
-            android:textSize="30dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="392dp"
-        android:layout_height="185dp"
-        android:layout_marginTop="100dp"
-        android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/etDateTime"
-            android:layout_width="315dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/underline_edit_text"
-            android:hint=" Chọn ngày giờ (yyyy-MM-dd HH:mm)"
-            android:minHeight="48dp"
-            android:progressTint="@color/white"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvBookingStatus"
-            android:layout_width="311dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:paddingTop="10dp"
-            android:text="Trạng thái đặt lịch"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="cursive"
+                android:text="Shop Name"
+                android:textAlignment="center"
 
-        <Button
-            android:id="@+id/btnBookAppointment"
-            android:layout_width="312dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="7dp"
-            android:backgroundTint="#2196F3"
-            android:text="Đặt lịch" />
+                android:textSize="40dp" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:fontFamily="cursive"
+
+                android:text="Xin kính chào quý khách"
+                android:textAlignment="center"
+                android:textSize="30dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+
+                <EditText
+                    android:id="@+id/etCustomerName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tên khách hàng"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/etPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Số điện thoại"
+                    android:inputType="phone"
+                    android:minHeight="48dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnSelectTime"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/lightBlue"
+                        android:minHeight="48dp"
+                        android:text="Chọn Giờ"
+                        android:textColor="@color/white"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <Button
+                        android:id="@+id/btnSelectDate"
+                        android:layout_width="131dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:backgroundTint="@color/lightBlue"
+                        android:text="Chọn Ngày"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvSelectedDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:hint="Ngày đã chọn"
+                    android:padding="8dp" />
+
+                <TextView
+                    android:id="@+id/tvSelectedTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="47dp"
+                    android:hint="Giờ đã chọn"
+                    android:padding="8dp"
+
+                    tools:ignore="DuplicateIds" />
+
+                <!-- Chọn Cửa Hàng -->
+
+                <Spinner
+                    android:id="@+id/spinnerLocations"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chọn cửa hàng"
+                    android:minHeight="48dp" />
+
+                <!-- Danh Sách Dịch Vụ -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chọn dịch vụ:"
+                    android:textColor="@color/white" />
+
+                <Spinner
+                    android:id="@+id/spinnerService"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/service_list"
+                    android:minHeight="48dp" />
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:paddingTop="8dp"
+                    android:text="Giá:  VND"
+                    android:textSize="18dp" />
+
+                <RadioGroup
+                    android:id="@+id/rgPaymentMethod"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:textColor="@color/white">
+
+                    <RadioButton
+                        android:id="@+id/rbCash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tiền mặt"
+
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <RadioButton
+                        android:id="@+id/rbBankTransfer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chuyển khoản" />
+
+                    <Button
+                        android:id="@+id/btnBookAppointment"
+                        android:layout_width="312dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="7dp"
+                        android:backgroundTint="#2196F3"
+                        android:text="Thanh Toán Và Đặt Lịch" />
+
+                    <TextView
+                        android:id="@+id/tvBookingStatus"
+                        android:layout_width="311dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:paddingTop="10dp"
+                        android:text="Trạng thái đặt lịch"
+                        android:textSize="20sp" />
+
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>

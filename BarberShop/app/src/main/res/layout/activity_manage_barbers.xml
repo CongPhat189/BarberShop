@@ -3,12 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        android:textColor="@color/Blue"
+        android:layout_marginBottom="10dp"
+        android:text="Quản lý thợ" />
 
     <Button
         android:id="@+id/btnAddBarber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/lightBlue"
         android:text="Thêm Thợ" />
 
     <androidx.recyclerview.widget.RecyclerView
