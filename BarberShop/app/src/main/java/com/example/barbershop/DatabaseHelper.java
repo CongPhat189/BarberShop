@@ -79,7 +79,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COL_ROLE + " TEXT)";
         db.execSQL(createUserTable);
 
-
+        // Tạo bảng lưu lịch đặt
         String createBookingTable = "CREATE TABLE " + TABLE_BOOKING + " (" +
                     COL_BOOKING_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COL_USER_ID + " INTEGER, " +
@@ -255,14 +255,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     String phone = cursor.getString(cursor.getColumnIndexOrThrow(COL_PHONE));
                     String date = cursor.getString(cursor.getColumnIndexOrThrow(COL_DATE));
                     String time = cursor.getString(cursor.getColumnIndexOrThrow(COL_TIME));
-                    String services = cursor.getString(cursor.getColumnIndexOrThrow(COL_SERVICES));
-                    String price = String.valueOf(cursor.getDouble(cursor.getColumnIndexOrThrow(COL_PRICES)));
                     String locationName = cursor.getString(cursor.getColumnIndexOrThrow(COL_LOCATION_ADDRESS_FK));
+                    String services = cursor.getString(cursor.getColumnIndexOrThrow(COL_SERVICES));
+                    String price = cursor.getString(cursor.getColumnIndexOrThrow(COL_PRICES));
                     String paymentMethod = cursor.getString(cursor.getColumnIndexOrThrow(COL_PAYMENT_METHOD));
                     String status = cursor.getString(cursor.getColumnIndexOrThrow(COL_STATUS));
 
                     // Tạo đối tượng Booking
-                    Booking booking = new Booking(booking_id, user_id, full_name, phone, date, time, services, price, locationName, paymentMethod, status);
+                    Booking booking = new Booking(booking_id, user_id, full_name, phone, date, time,locationName, services, price,  paymentMethod, status);
 
                     // Thêm vào danh sách
                     bookingList.add(booking);
@@ -272,22 +272,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.close();
         return bookingList;
-    }
-
-
-
-
-
-
-    // Thêm phương thức gửi đánh giá
-    public boolean submitRating(int full_name, int rating) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COL_BOOKING_NAME, full_name);
-        values.put("rating", rating); // Giả sử có cột 'rating' trong bảng Booking
-
-        long result = db.insert("Rating", null, values); // Giả sử có bảng 'Rating'
-        return result != -1;
     }
 
 
@@ -309,21 +293,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    // Lấy danh sách lượt đặt lịch của người dùng
-    public Cursor getUserBookings(int user_id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM " + TABLE_BOOKING + " WHERE " + COL_USER_ID_FK + "=5", new String[]{String.valueOf(user_id)});
-    }
 
-    // Cập nhật trạng thái của một booking
-    public boolean updateBookingStatus(int bookingId, String status) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COL_STATUS, status);
 
-        int result = db.update(TABLE_BOOKING, values, COL_BOOKING_ID + "=?", new String[]{String.valueOf(bookingId)});
-        return result > 0;
-    }
+
 
     // Xóa một booking
     public boolean deleteBooking(int bookingId) {
@@ -335,11 +307,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Thêm đánh giá cho một địa điểm
-    public boolean addRating(int userId, int locationId, int rating, String review) {
+    public boolean addRating(int user_id, int location_id, float rating, String review) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COL_USER_ID, userId);
-        values.put(COL_LOCATION_ID, locationId);
+        values.put(COL_USER_ID_FK, user_id);
+        values.put(COL_LOCATION_ID, location_id);
         values.put(COL_RATING, rating);
         values.put(COL_REVIEW, review);
 
@@ -595,7 +567,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             int userId = cursor.getInt(0);
             int bookingCount = cursor.getInt(1);
-            mostActiveUser = "User ID: " + userId + ", Bookings: " + bookingCount;
+            mostActiveUser = "User ID: " + userId + ", Số lượng lịch đã đặt: " + bookingCount;
         }
         cursor.close();
         db.close();

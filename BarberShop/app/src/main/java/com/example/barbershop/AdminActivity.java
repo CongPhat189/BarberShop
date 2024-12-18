@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminActivity extends AppCompatActivity {
 
-    private Button btnManageUsers,btnManageBarbers, btnManageStores, btnManageAppointments, btnViewReports;
+    private Button btnManageUsers,btnManageBarbers, btnManageStores, btnManageAppointments, btnViewReports, btnLogOut;
 
 
     @Override
@@ -24,6 +24,7 @@ public class AdminActivity extends AppCompatActivity {
         btnManageStores = findViewById(R.id.btnManageStores);
         btnManageAppointments = findViewById(R.id.btnManageAppointments);
         btnViewReports = findViewById(R.id.btnViewReports);
+        btnLogOut = findViewById(R.id.btnLogOut);
 
         // Xử lý sự kiện cho từng nút bấm
         btnManageUsers.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +70,15 @@ public class AdminActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Điều hướng đến màn hình đăng nhập
+                Intent intent = new Intent(AdminActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
 

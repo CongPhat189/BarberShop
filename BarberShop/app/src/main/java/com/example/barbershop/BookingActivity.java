@@ -28,7 +28,7 @@ public class BookingActivity extends AppCompatActivity {
     private Spinner spinnerLocations;
     private RadioGroup rgPaymentMethod;
 
-    private Button btnBookAppointment;
+    private Button btnBookAppointment, btnManageAppointments, btnLogOut;
     private DatabaseHelper dbHelper;
     private Spinner spinnerService;
     private TextView tvStatus;
@@ -51,6 +51,8 @@ public class BookingActivity extends AppCompatActivity {
         btnBookAppointment = findViewById(R.id.btnBookAppointment);
         tvStatus = findViewById(R.id.tvBookingStatus);
         tvPrice = findViewById(R.id.tvPrice);
+        btnManageAppointments = findViewById(R.id.btnManageAppointments);
+        btnLogOut = findViewById(R.id.btnLogOut);
 
         dbHelper = new DatabaseHelper(this);
         // Lấy danh sách cửa hàng
@@ -107,6 +109,16 @@ public class BookingActivity extends AppCompatActivity {
 
         // Xử lý đặt lịch
         btnBookAppointment.setOnClickListener(v -> submitBooking());
+        btnManageAppointments.setOnClickListener(v -> {
+            Intent intent = new Intent(BookingActivity.this, BookingListActivity.class);
+            startActivity(intent);
+        });
+        btnLogOut.setOnClickListener(v -> {
+            Intent intent = new Intent(BookingActivity.this, LoginActivity.class);
+            startActivity(intent);
+        });
+
+
     }
 
     private void submitBooking() {
@@ -145,7 +157,7 @@ public class BookingActivity extends AppCompatActivity {
         } else {
             tvStatus.setText("Đặt lịch thất bại!");
         }
-        startActivity(new Intent(BookingActivity.this, ManageAppointmentsActivity.class));
+
     }
 }
 

@@ -12,8 +12,10 @@
         android:layout_gravity="center_horizontal"
         android:paddingTop="15dp"
         android:paddingBottom="8dp"
+        android:fontFamily="cursive"
+        android:textColor="@color/Blue"
         android:text="Điểm xếp hạng và bài đánh giá"
-        android:textSize="25dp"/>
+        android:textSize="30dp"/>
 
 
     <RatingBar

@@ -120,8 +120,6 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingV
         });
         holder.btnSubmitRating.setOnClickListener(v -> {
             Intent intent = new Intent(context, RatingActivity.class);
-            intent.putExtra("booking_id", booking.getBooking_id()); // Truyền booking_id sang RatingActivity
-            intent.putExtra("address", booking.getLocationName()); // Truyền tên dịch vụ (nếu cần)
             context.startActivity(intent);
         });
 

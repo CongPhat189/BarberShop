@@ -3,6 +3,7 @@ package com.example.barbershop;
 import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -132,6 +133,10 @@ public class AddEditLocationActivity extends AppCompatActivity {
 
     // Lưu thông tin địa điểm vào SQLite
     private void saveLocation() {
+                SharedPreferences preferences = getSharedPreferences("LocationSession", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt("location_id", locationId) ;
+                editor.apply();
                 String name = etLocationName.getText().toString().trim();
                 String address = etLocationAddress.getText().toString().trim();
                 String service = etLocationService.getText().toString().trim();
