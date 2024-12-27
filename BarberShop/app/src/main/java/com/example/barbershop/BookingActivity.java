@@ -32,7 +32,7 @@ public class BookingActivity extends AppCompatActivity {
     private DatabaseHelper dbHelper;
     private Spinner spinnerService;
     private TextView tvStatus;
-    private float[] servicePrices = {100000, 50000, 300000, 200000};
+    private float[] servicePrices = {100000, 50000, 300000, 200000 , 500000, 550000, 600000};
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -129,7 +129,7 @@ public class BookingActivity extends AppCompatActivity {
         String services = spinnerService.getSelectedItem().toString();
         SharedPreferences preferences = getSharedPreferences("UserSession", MODE_PRIVATE);
         int user_id = preferences.getInt("user_id", -1);
-        String price = tvPrice.getText().toString().trim();
+        Double price = (double) servicePrices[spinnerService.getSelectedItemPosition()];
         String status = "";
 
 

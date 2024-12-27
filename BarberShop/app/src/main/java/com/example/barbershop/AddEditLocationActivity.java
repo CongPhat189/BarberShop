@@ -54,12 +54,7 @@ public class AddEditLocationActivity extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(this);
 
-//        // Kiểm tra nếu là chỉnh sửa
-//        Intent intent = getIntent();
-//        if (intent.hasExtra("locationId")) {
-//            locationId = intent.getIntExtra("locationId", -1);
-//            loadLocationDetails(locationId);
-//        }
+
         // Kiểm tra chế độ sửa
         Intent intent = getIntent();
         if (intent.hasExtra("location_id")) {

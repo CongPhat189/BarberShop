@@ -2,9 +2,12 @@
     <string name="app_name" translatable="false">BarberShop</string>
     <string-array name="service_list">
         <item>Cắt tóc - 100,000 VND</item>
-        <item>Gội đầu - 50,000 VND</item>
+        <item>Cạo mặt ráy tai - 50,000 VND</item>
         <item>Nhuộm tóc - 300,000 VND</item>
         <item>Tạo kiểu - 200,000 VND</item>
+        <item>Combo 1: Cắt + nhuộm - 500,000 VND</item>
+        <item>Combo 2: Cắt + nhuộm + gội đầu - 550,000 VND</item>
+        <item>Combo 3: Cắt + nhuộm + gội đầu + cạo mặt ráy tai - 600,000 VND</item>
     </string-array>
 </resources>
 

@@ -42,7 +42,7 @@ public class RatingActivity extends AppCompatActivity {
         boolean result = db.addRating(user_id, location_id, rating, review);
         if (result) {
             Toast.makeText(RatingActivity.this, "Đánh giá: " + rating + "\nNhận xét: " + review, Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(RatingActivity.this, BookingListActivity.class);
+            Intent intent = new Intent(RatingActivity.this, BookingActivity.class);
             startActivity(intent);
         }
         else {

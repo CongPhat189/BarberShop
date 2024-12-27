@@ -12,12 +12,12 @@ public class Booking {
     private String time;
     private String locationName;
     private String services;
-    private String price;
+    private Double price;
     private String paymentMethod;
     private String status;
 
 
-    public Booking(int booking_id, int user_id,String full_name, String phone, String date,String time, String locationName, String services,String price, String paymentMethod,String status) {
+    public Booking(int booking_id, int user_id,String full_name, String phone, String date,String time, String locationName, String services,Double price, String paymentMethod,String status) {
         this.booking_id = booking_id;
         this.user_id = user_id;
         this.full_name = full_name;
@@ -41,7 +41,7 @@ public class Booking {
     public String getTime() { return time; }
     public String getLocationName() { return locationName; }
     public String getServices() { return services; }
-    public String getPrice() { return price; }
+    public Double getPrice() { return price; }
     public String getStatus() { return status; }
     public String getPaymentMethod() { return paymentMethod; }
 }

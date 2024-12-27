@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -156,18 +158,67 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         onCreate(db);
     }
+    public static class PasswordUtils {
+
+        public static String hashPassword(String password) {
+            try {
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                byte[] hash = digest.digest(password.getBytes());
+                StringBuilder hexString = new StringBuilder();
+
+                for (byte b : hash) {
+                    String hex = Integer.toHexString(0xff & b);
+                    if (hex.length() == 1) {
+                        hexString.append('0');
+                    }
+                    hexString.append(hex);
+                }
+                return hexString.toString();
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException("Error hashing password", e);
+            }
+        }
+    }
 
     // Thêm người dùng mới
     public boolean insertUser(String username, String password, String role) {
         SQLiteDatabase db = this.getWritableDatabase();
+        String hashedPassword = PasswordUtils.hashPassword(password);
         ContentValues values = new ContentValues();
         values.put(COL_USERNAME, username);
-        values.put(COL_PASSWORD, password);
+        values.put(COL_PASSWORD,  hashedPassword);
         values.put(COL_ROLE, role);
 
         long result = db.insert(TABLE_USER, null, values);
         db.close();
         return result != -1;
+    }
+    public String getUserRole(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_USER, new String[]{COL_ROLE,COL_PASSWORD},
+                COL_USERNAME + "=? " ,
+                new String[]{username}, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            String role = cursor.getString(cursor.getColumnIndexOrThrow(COL_ROLE));
+            String storedHashedPassword = cursor.getString(cursor.getColumnIndexOrThrow(COL_PASSWORD));
+
+            // Băm mật khẩu người dùng nhập vào
+            String Password = PasswordUtils.hashPassword(password);
+
+            // So sánh mật khẩu
+            if (storedHashedPassword.equals(Password)) {
+                cursor.close();
+                db.close();
+                return role;
+            }
+
+        }
+        if (cursor != null) cursor.close();
+        db.close();
+        return null;
+
+
     }
 
     // Đăng nhập
@@ -187,7 +238,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Đặt lịch
-    public boolean addBooking(int user_id,String full_name, String phone, String date, String time, String services, String price, String locationAddress, String paymentMethod,String status) {
+    public boolean addBooking(int user_id,String full_name, String phone, String date, String time, String services, double price, String locationAddress, String paymentMethod,String status) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL_USER_ID_FK, user_id);
@@ -220,7 +271,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String time = cursor.getString(cursor.getColumnIndexOrThrow("time"));
                 String locationAddress = cursor.getString(cursor.getColumnIndexOrThrow("location_address"));
                 String services = cursor.getString(cursor.getColumnIndexOrThrow("services"));
-                String price = cursor.getString(cursor.getColumnIndexOrThrow("price"));
+                Double price = cursor.getDouble(cursor.getColumnIndexOrThrow("price"));
                 String paymentMethod = cursor.getString(cursor.getColumnIndexOrThrow("payment_method"));
                 String status = cursor.getString(cursor.getColumnIndexOrThrow("status"));
 
@@ -235,7 +286,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Booking> bookingList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-//        String query = "SELECT * FROM " + TABLE_BOOKING + " WHERE " + COL_USER_ID_FK + " = ?";
+//
         Cursor cursor = db.query(
                 TABLE_BOOKING,
                 null, // Lấy tất cả các cột
@@ -257,7 +308,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     String time = cursor.getString(cursor.getColumnIndexOrThrow(COL_TIME));
                     String locationName = cursor.getString(cursor.getColumnIndexOrThrow(COL_LOCATION_ADDRESS_FK));
                     String services = cursor.getString(cursor.getColumnIndexOrThrow(COL_SERVICES));
-                    String price = cursor.getString(cursor.getColumnIndexOrThrow(COL_PRICES));
+                    Double price = cursor.getDouble(cursor.getColumnIndexOrThrow(COL_PRICES));
                     String paymentMethod = cursor.getString(cursor.getColumnIndexOrThrow(COL_PAYMENT_METHOD));
                     String status = cursor.getString(cursor.getColumnIndexOrThrow(COL_STATUS));
 
@@ -276,21 +327,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public String getUserRole(String username, String password) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_USER, new String[]{COL_ROLE},
-                COL_USERNAME + "=? AND " + COL_PASSWORD + "=?",
-                new String[]{username, password}, null, null, null);
 
-        if (cursor != null && cursor.moveToFirst()) {
-            String role = cursor.getString(0);
-            cursor.close();
-            return role;
-        }
-        return null;
-
-
-    }
 
 
 

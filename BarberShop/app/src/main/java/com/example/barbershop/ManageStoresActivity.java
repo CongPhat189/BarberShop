@@ -35,12 +35,9 @@ public class ManageStoresActivity extends AppCompatActivity {
             @Override
             public void onEdit(Location location) {
                 Intent intent = new Intent(ManageStoresActivity.this, AddEditLocationActivity.class);
-                intent.putExtra("locationId", location.getId());
-                intent.putExtra("name", location.getName());
-                intent.putExtra("address", location.getAddress());
-                intent.putExtra("contact", location.getContact());
-                intent.putExtra("image", location.getImageUri());
                 startActivity(intent);
+                dbHelper.updateLocation( location.getId(),location.getName(), location.getAddress(), location.getService(), location.getPrice(), location.getContact(), location.getImageUri());
+
             }
 
             @Override
